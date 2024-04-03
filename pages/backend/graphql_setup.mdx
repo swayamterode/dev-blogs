@@ -1,0 +1,151 @@
+import { Callout, Steps, FileTree } from "nextra/components";
+
+# Crating Apollo GraphQL Server with expressMiddleware
+
+This example demonstrates how to create an Apollo Server instance and connect it to an Express app.
+
+## Folder Acrchitecture
+
+The folder structure for this project should look like this:
+
+<FileTree>
+  <FileTree.Folder name="src" open>
+    <FileTree.Folder name="app" open />
+    <FileTree.File name="index.ts" />
+  </FileTree.Folder>
+  <FileTree.File name="index.ts" />
+</FileTree>
+
+- The `src` folder contains the source code for the project.
+- The `app` folder inside the `src` folder contains the code for the Apollo Server instance.
+- The `index.ts` file inside the `src` folder is the entry point of the application.
+
+<Callout type="info">
+  This project is created via CRA (Create React App) and the `src` folder is the
+  root of the project.
+</Callout>
+
+## Setting Up the Project
+
+Follow these steps to set up the project and create an Apollo Server with expressMiddleware ✨
+
+<Steps>
+
+### Install Dependencies
+
+First, create a new project folder and navigate to it in your terminal. If you are confused see the folder structure above. Then, run the following command to install the required dependencies:
+
+```bash copy
+npm install apollo-server-express express graphql
+```
+
+### Creating Apollo Server
+
+```js filename="app/index.ts" showLineNumbers copy {27}
+import express from "express";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import BodyParser from "body-parser";
+
+export async function initServer() {
+  const app = express(); // create an express app
+  app.use(BodyParser.json()); // use the body parser middleware
+  const graphqlServer = new ApolloServer({
+    // create an ApolloServer instance
+    typeDefs: `
+      type Query {
+        greet: String
+      }
+
+    `, // define your schema here
+    // What are typeDefs? https://www.apollographql.com/docs/apollo-server/schema/schema/
+    resolvers: {
+      Query: {
+        greet: () => "Hello user!",
+      },
+    }, // define your resolvers here.
+    // What are resolvers? https://www.apollographql.com/docs/apollo-server/data/resolvers/
+  });
+
+  await graphqlServer.start(); // starts the server
+  app.use("/graphql", expressMiddleware(graphqlServer)); // use the express middleware to connect the ApolloServer
+  return app; // return the app instance to be used by the caller of this function (in this case, the index.ts file)
+}
+```
+
+#### Code Explanation
+
+<details>
+
+<summary>Details</summary>
+
+1. We first import the necessary packages:
+
+- `express` to create an express app
+- `ApolloServer` from `@apollo/server` to create an Apollo Server instance
+- `expressMiddleware` from `@apollo/server/express4` to connect the Apollo Server instance to the express app
+- `BodyParser` to parse the incoming request body
+
+2. We define an `initServer` function that creates an express app, uses the body parser middleware, and creates an Apollo Server instance.
+
+3. We define the schema for the Apollo Server instance using the `typeDefs` property. In this example, we define a simple schema with a `greet` query that returns a string.
+
+4. We define the resolvers for the schema using the `resolvers` property. In this example, we define a resolver for the `greet` query that returns the string "Hello user!".
+
+5. We start the Apollo Server instance using the `start` method.
+
+6. We use the `expressMiddleware` function to connect the Apollo Server instance to the express app. This allows the express app to handle GraphQL requests.
+
+7. Finally, we return the express app instance to be used by the caller of the `initServer` function.
+
+</details>
+
+### Running the Apollo Server
+
+```js filename="src/index.ts" copy showLineNumbers
+import { initServer } from "./app/index";
+
+async function init() {
+  const app = await initServer();
+  app.listen(8000, () => {
+    console.log("Server is running on http://localhost:8000");
+  });
+}
+
+init();
+```
+
+#### Code Explanation
+
+<details>
+
+<summary>Details</summary>
+
+1. We import the `initServer` function from the `app/index` file.
+
+2. We define an `init` function that calls the `initServer` function to create an express app.
+
+3. We use the `app.listen` method to start the express app on port 8000.
+
+4. When the server is running, we log a message to the console.
+
+5. We call the `init` function to start the server.
+
+</details>
+
+<Callout type="info">
+  This will start the server and log a message to the console indicating that
+  the server is running on `http://localhost:8000`.
+</Callout>
+
+### Viewing the GraphQL Playground
+
+To view the GraphQL Playground, open your browser and navigate to `http://localhost:8000/graphql`. You should see the Apollo Server Playground where you can interact with the GraphQL API.
+
+![ApolloServer Playground](/images/ApolloServer.png)
+
+<Callout type="info">
+  This only opens on development mode and not in production.
+</Callout>
+
+</Steps>

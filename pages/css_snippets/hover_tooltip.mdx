@@ -1,0 +1,119 @@
+import { Callout, Steps, FileTree } from "nextra/components";
+import { Tabs } from "nextra/components";
+
+# Hover Tooltip Component
+
+This is a simple tooltip component that shows a tooltip when hovered over a component.
+
+<Callout type="info">
+  This component is created using Tailwind CSS and Mext.js.
+</Callout>
+
+## Create a Hover Tooltip Component ✨
+
+<Steps>
+
+### Create a `HoverTooltip.tsx` component in `components` folder
+
+```tsx copy filename="@components/HoverTooltip.tsx" showLineNumbers
+import "./tooltip.css";
+
+type Props = {
+  tooltipText: string;
+  children: React.ReactNode;
+  direction: "left" | "right" | "up" | "down";
+  includeHoverBg: boolean;
+};
+
+const HoverTooltip: React.FC<Props> = ({
+  tooltipText, // tooltip text like: "Edit"
+  children, // icon or any component
+  direction, // only 2 directions are supported: up and down
+  includeHoverBg, // This props allows to include hover background
+}) => {
+  let positionClasses = "";
+
+  switch (direction) {
+    case "up":
+      positionClasses = "tooltip-down ml-3 -translate-y-10 -translate-x-1/2";
+      break;
+    case "down":
+      positionClasses = "tooltip-up translate-y-10 ml-3 -translate-x-1/2";
+      break;
+  }
+
+  const hoverClass = includeHoverBg
+    ? "hover:bg-[#2e2e2e]  rounded-full p-1 rounded-full p-1" // Added hover background
+    : "";  // No hover background
+
+  return (
+    <div className="group relative flex justify-start">
+      <div className={`${hoverClass}`}> {children}</div>
+      <span
+        className={`tooltip absolute ${positionClasses} transform scale-0 transition-all duration-300 rounded bg-[#1a1919] px-3 py-1.5 text-xs text-white group-hover:scale-100 whitespace-nowrap`}
+      >
+        {tooltipText}
+      </span>
+    </div>
+  );
+};
+
+export default HoverTooltip;
+
+};
+
+export default HoverTooltip;
+```
+
+### Create a `tooltip.css` file in the `components` folder
+
+```css filename="@components/tooltip.css" copy showLineNumbers
+/* Tooltip pointing upwards */
+.tooltip-up::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #1a1919 transparent;
+}
+
+/* Tooltip pointing downwards */
+.tooltip-down::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1a1919 transparent transparent transparent;
+}
+```
+
+### How to use the `HoverTooltip` component?
+
+```tsx copy showLineNumbers {6-11}
+import HoverTooltip from "@/components/HoverTooltip";
+import { HiOutlinePencil } from "react-icons/hi";
+
+const page = (props: Props) => {
+  return (
+    <div>
+      <HoverTooltip
+        tooltipText="Change Specification" // Set tooltip text
+        direction="down" // Set direction to up or down
+        includeHoverBg={false} // Set to true to include hover background
+      >
+        <HiOutlinePencil className="text-xl text-blue-600 cursor-pointer" />
+      </HoverTooltip>
+    </div>
+  );
+};
+
+export default page;
+```
+
+</Steps>

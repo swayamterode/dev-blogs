@@ -1,0 +1,88 @@
+import { Callout, Steps, FileTree } from "nextra/components";
+import { Tabs } from "nextra/components";
+
+# Husky 🐶 + Lint-Staged + Prettier Setup
+
+This guide will help you set up Husky, Lint-Staged, and Prettier in your project to enforce code formatting and linting on every commit.
+
+## Setting up Prettier and Husky
+
+<Steps>
+
+### Install Prettier
+
+```bash copy showLineNumbers
+npm install --save-dev --save-exact prettier
+```
+
+### Create a Prettier configuration file
+
+```bash showLineNumbers copy
+node --eval "fs.writeFileSync('.prettierrc','{}\n')"
+```
+
+### Make `.prettierignore` file
+
+```bash copy showLineNumbers
+# Ignore artifacts:
+build
+coverage
+# .next
+```
+
+<Callout type="warning">
+  Make sure to add the files and directories you want to ignore in the
+  `.prettierignore` file. If you are using Next.js you can add `.next` to the
+  `.prettierignore` file.
+</Callout>
+
+### Install Husky and Lint-Staged
+
+<Tabs items={['npm', 'yarn', 'pnpm']}>
+  <Tabs.Tab>
+    ```bash copy showLineNumbers
+    npm install --save-dev husky lint-staged
+    npx husky init
+    node --eval "fs.writeFileSync('.husky/pre-commit','npx lint-staged\n')"
+    ```
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+  ```bash copy showLineNumbers
+  yarn add --dev husky lint-staged
+  npx husky init
+  node --eval "fs.writeFileSync('.husky/pre-commit','npx lint-staged\n')"
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```bash copy showLineNumbers
+pnpm add --save-dev husky lint-staged
+npx husky init
+node --eval "fs.writeFileSync('.husky/pre-commit','pnpm exec lint-staged\n')"
+  ```
+  </Tabs.Tab>
+</Tabs>
+
+### Add the following to your `package.json` file
+
+```json copyFile
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+```
+
+### Add the following command to the `.husky/pre-commit` file
+
+```bash copy
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm exec lint-staged # or yarn exec lint-staged or pnpm exec lint-staged 👍🏻
+
+```
+
+</Steps>
+
+## Conclusion
+
+You have successfully set up Husky, Lint-Staged, and Prettier in your project. Now, every time you commit, Husky will run Lint-Staged, which will run Prettier on your staged files.

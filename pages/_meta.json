@@ -1,0 +1,17 @@
+{
+  "index": "Introduction",
+  "husky_setup": ".husky",
+  "backend": "Backend",
+  "css_snippets": "CSS Snippets",
+  "frontend": "Frontend",
+  "demo": {
+    "title": "Portfolio ↗",
+    "type": "page",
+    "href": "https://github.com/swayamterode",
+    "newWindow": true
+  },
+  "about": {
+    "title": "About",
+    "type": "page"
+  }
+}
