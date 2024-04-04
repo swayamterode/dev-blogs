@@ -3,6 +3,7 @@
   "husky_setup": ".husky",
   "backend": "Backend",
   "css_snippets": "CSS Snippets",
+  "dsa": "DSA",
   "frontend": "Frontend",
   "demo": {
     "title": "Portfolio ↗",

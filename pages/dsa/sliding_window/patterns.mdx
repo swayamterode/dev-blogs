@@ -1,0 +1,48 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Sliding Window Patterns
+
+Sliding Window is a technique used to solve problems where we have to find the longest/shortest substring or subarray that satisfies some condition.
+
+It is a very efficient technique that reduces the time complexity of the problem from `O(n^2)` to `O(n)`.
+
+## Identifying Sliding Window Problems
+
+```bash copy
+To, find out a sliding window problem :-
+> First thing is, we have given something like an "Array" | OR | "String"
+> Second thing is, they are talking about either "subsequence" | OR | "substring" | "subarray"
+> And third most thing is, either we have given a "window size i.e. k" | OR | we have to "manually find out window size"
+```
+
+If you get aleast 2 out of 3 points, then it's a sliding window problem 💯
+
+## Types of Sliding Window Patterns
+
+1. `Fix size` sliding window means K is given
+2. `Variable size` sliding window means K is not given
+
+## Template for `Variable Size` Sliding Window
+
+```cpp copy
+while(j < size) {
+    if(condition < k) {
+        // Increase the window size ⬆️
+        j++;
+    } else if(condition == k) {
+        // Answer Calculation happens here 🫡
+        j++;
+    } else if(condition > k) {
+        while(condition > k) {
+            // Decrease the window size ⬇️
+            i++;
+        }
+        j++;
+    }
+}
+```
+
+- Initially, both `i` and `j` pointers will start form 0.
+- The `j` pointer is used to expand the window and the `i` pointer is used to shrink the window.
+- The `i` pointer will be used to shrink the window when the condition is greater than `k`.
+- The `j` pointer will be used to expand the window when the condition is less than `k`.
