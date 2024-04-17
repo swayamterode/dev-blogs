@@ -1,0 +1,104 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Dark and Light Mode in React.js (VITE)
+
+To enable dark mode in your React application using `Vite`, you can use the `localStorage` to store the user's preference and then use that to add or remove a class from the `document.documentElement`.
+
+<Steps>
+
+### Create a `CSS` file for dark mode
+
+```css filename="theme.css"
+/* Define your dark mode styles */
+.dark {
+  /* These are just examples, replace with your own dark mode styles */
+  background-color: #1a202c;
+  color: #a0aec0;
+}
+
+.dark .text-black {
+  color: #a0aec0;
+}
+
+.dark .bg-white {
+  background-color: #1a202c;
+}
+```
+
+### main.jsx
+
+Then, in your `main.jsx` file, you can **add a function** to set the initial theme based on the user's preference stored in localStorage:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./theme.css";
+
+// Set the theme before rendering the app
+const theme = localStorage.getItem("theme");
+if (theme === "dark" || !theme) {
+  document.documentElement.classList.add("dark");
+} else {
+  document.documentElement.classList.remove("dark");
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
+### App.jsx
+
+```jsx
+import React from "react";
+
+const App = () => {
+  function handleClick() {
+    if (localStorage.getItem("theme") === "dark") {
+      localStorage.setItem("theme", "light");
+      document.documentElement.classList.remove("dark");
+    } else {
+      localStorage.setItem("theme", "dark");
+      document.documentElement.classList.add("dark");
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={handleClick}>Toggle Dark Mode</button>
+      {/* Rest of your app */}
+    </div>
+  );
+};
+
+export default App;
+```
+
+### tailwind.config.js
+
+Add this one line in the tailwind config:
+
+```js filename="tailwind.config.js" showLineNumbers {3}
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: "class", // Add this line
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+<Callout>
+  This enables the dark mode class to be added to the `document.documentElement`
+  when the user toggles dark mode.
+</Callout>
+
+</Steps>
+
+Now, when the user clicks the button, the theme will toggle between dark and light mode. The user's preference will be stored in `localStorage`, so it will persist even if the user refreshes the page.
