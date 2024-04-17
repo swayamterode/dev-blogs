@@ -76,45 +76,22 @@ import { n } from "nextra/dist/types-c8e621b7";
 // );
 
 const logo = <>$wayam</>;
-// const head = (
-//   <>
-//     <meta name="msapplication-TileColor" content="#000000" />
-//     <meta name="theme-color" content="#000000" />
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//     <meta httpEquiv="Content-Language" content="en" />
-//     <meta
-//       name="description"
-//       content="Documentation of Start UI [web], an opinionated UI starter for React. From Bearstudio team"
-//     />
-//     <meta
-//       name="og:description"
-//       content="Documentation of Start UI [web], an opinionated UI starter for React. From Bearstudio team"
-//     />
-//     <meta name="twitter:card" content="summary_large_image" />
-//     <meta
-//       name="twitter:image"
-//       content="https://github.com/BearStudio/start-ui-web/raw/master/assets/thumbnail.png"
-//     />
-//     <meta
-//       name="twitter:site:domain"
-//       content="https://github.com/swayamterode"
-//     />
-//     <meta
-//       name="twitter:url"
-//       content="https://github.com/swayamterode"
-//     />
-//     <meta name="og:title" content="Start UI [web] documentation" />
-//     <meta
-//       name="og:image"
-//       content="https://github.com/BearStudio/start-ui-web/raw/master/assets/thumbnail.png"
-//     />
-//     <meta
-//       name="apple-mobile-web-app-title"
-//       content="Start UI [web] documentation"
-//     />
-//     <link rel="icon" href="/favicon-16x16.png" type="image/png" />
-//   </>
-// );
+const head = (
+  <>
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta httpEquiv="Content-Language" content="en" />
+    <meta
+      name="description"
+      content="One stop for dev who loves to code and write blogs."
+    />
+    <meta
+      name="og:description"
+      content="Swayam Terode's personal blog and DSA revision notes."
+    />
+  </>
+);
 
 const config: DocsThemeConfig = {
   logo,
@@ -149,10 +126,14 @@ const config: DocsThemeConfig = {
       titleTemplate,
     };
   },
-  // head,
-
+  head,
   sidebar: {
-    autoCollapse: false,
+    toggleButton: true,
+    defaultMenuCollapseLevel: 1,
+  },
+  toc: {
+    float: true,
+    backToTop: true,
   },
   footer: {
     text: () => (

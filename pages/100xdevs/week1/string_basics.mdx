@@ -1,0 +1,371 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Basic JavaScript String Methods
+
+This is a list of some of the most common string methods in JavaScript.
+
+## length ()
+
+The length property `returns the length` of a string (number of characters).
+
+```js copy showLineNumbers {3}
+function getLength(str) {
+  console.log("The string is: " + str);
+  console.log("The length of the string is: " + str.length);
+}
+
+getLength("Hello World");
+```
+
+```bash filename="TERMINAL OUTPUT"
+The string is: Hello World
+The length of the string is: 11
+```
+
+## indexOf ()
+
+`Return first occurrence` of a specified value in a string.
+
+```js copy showLineNumbers {4}
+function getIndexOf(str, target) {
+  console.log("The string is: " + str);
+  console.log("The target is: " + target);
+  console.log("The start index of target is : " + str.indexOf(target));
+}
+
+getIndexOf("Hello World", "World");
+```
+
+Output:
+
+```bash filename="TERMINAL"
+The string is: Hello World
+The target is: World
+The start index of target is : 6
+```
+
+Explanation: The target string `World` starts at index `6` in the string `Hello World`.
+
+Some special cases:
+
+<Callout type="info">
+
+**What if the target appers more than once in the string?**
+
+- The `indexOf()` method **returns the index of the first occurrence** of the specified
+  value.
+
+</Callout>
+
+Example:
+
+<details>
+<summary> Click to see the code </summary>
+
+```js copy showLineNumbers {4}
+function getIndexOf(str, target) {
+  console.log("The string is: " + str);
+  console.log("The target is: " + target);
+  console.log("The start index of target is : " + str.indexOf(target));
+}
+
+getIndexOf("Hello World World", "World");
+```
+
+Output:
+
+```bash filename="TERMINAL"
+The string is: Hello World World
+The target is: World
+The start index of target is : 6
+```
+
+</details>
+
+<Callout type="info">
+
+**What if target is not found in the string?**
+
+- The `indexOf()` method **returns `-1`** if the value to search for never occurs.
+
+</Callout>
+
+Example:
+
+<details>
+<summary> Click to see the code </summary>
+
+```js copy
+function getIndexOf(str, target) {
+  console.log("The string is: " + str);
+  console.log("The target is:" + target);
+  console.log("The start index of target is : " + str.indexOf(target));
+}
+getIndexOf("Hello World World", "Hi");
+```
+
+Output:
+
+```bash filename="TERMINAL"
+The string is: Hello World World
+The target is: Hi
+The start index of target is : -1
+
+```
+
+</details>
+
+## lastIndexOf ()
+
+Returns the `last occurrence` of a specified value in a string.
+
+```js copy showLineNumbers {4}
+function getLastIndexOf(str, target) {
+  console.log("The string is: " + str);
+  console.log("The target is:" + target);
+  console.log(`The last index of ${target} is : ` + str.lastIndexOf(target));
+}
+
+getLastIndexOf("Hello World World", "World");
+```
+
+```bash filename="TERMINAL"
+The string is: Hello World World
+The target is:World
+The last index of World is : 12
+```
+
+## slice ()
+
+The `slice()` method extracts a part of a string and returns the extracted part in a new string.
+
+How it works:
+
+- The `slice()` method takes two parameters: the `start index` and the `end index`.
+- Returns the chars from the `start index` to the `end index - 1`.
+
+```js copy showLineNumbers {4}
+let str = "Hello World";
+let res = str.slice(0, 5);
+console.log(res);
+```
+
+```bash filename="TERMINAL"
+Hello
+```
+
+<Callout type="info">
+  The substr does the same thing as slice, but the second parameter specifies
+  the length of the extracted part. This is deprecated and should be avoided.
+</Callout>
+
+## replace ()
+
+The `replace()` method replaces a specified value with another value in a string.
+
+```js copy showLineNumbers {3}
+const str = "Pune is the city of India, Pune is a beautiful city";
+console.log("BEFORE: ", str);
+const res = str.replace("Pune", "Mumbai");
+console.log("AFTER: ", res);
+```
+
+```bash filename="TERMINAL"
+BEFORE: Pune is the city of India, Pune is a beautiful city
+AFTER: Mumbai is the city of India, Pune is a beautiful city
+```
+
+## split ()
+
+The `split()` method is used to **split a string into an array of substrings**, and returns the new array.
+
+- split(" ") splits the string by **space**.
+- split("") splits the string by **each character**.
+- split(",") splits the string by **comma**.
+
+You can split the string by any character. Then that character will not be included in the array.
+
+```js copy showLineNumbers {2}
+const value = "Pune is the city of India, Pune is a beautiful city";
+const res = value.split(" ");
+console.log(res);
+console.log("Type of res:", typeof res);
+```
+
+```bash filename="TERMINAL"
+[ 'Pune', 'is', 'the', 'city', 'of', 'India,', 'Pune', 'is', 'a', 'beautiful', 'city' ]
+Type of res: object
+```
+
+Also you can split the string by each character.
+
+```js copy showLineNumbers {2}
+const value = "Pune is the city of India, Pune is a beautiful city";
+const res = value.split("");
+console.log(res);
+```
+
+```bash filename="TERMINAL"
+[
+  'P', 'u', 'n', 'e', ' ', 'i', 's', ' ', 't', 'h',
+  'e', ' ', 'c', 'i', 't', 'y', ' ', 'o', 'f', ' ',
+  'I', 'n', 'd', 'i', 'a', ',', ' ', 'P', 'u', 'n',
+  'e', ' ', 'i', 's', ' ', 'a', ' ', 'b', 'e', 'a',
+  'u', 't', 'i', 'f', 'u', 'l', ' ', 'c', 'i', 't',
+  'y'
+]
+```
+
+<Callout type="info">
+  When you split by each character, the spaces are also included.
+</Callout>
+
+## trim ()
+
+The `trim()` method `removes whitespace from both sides of a string`. This method does not remove the whitespaces between the words.
+
+```js copy showLineNumbers {3}
+const str = "          This is test string       ";
+console.log(str);
+const res = str.trim();
+console.log(res);
+```
+
+```bash filename="TERMINAL"
+          This is test string
+This is test string
+```
+
+## toUpperCase ()
+
+The `toUpperCase()` method converts a string to uppercase letters.
+
+```js copy showLineNumbers {3}
+const str = "Hello World";
+console.log("BEFORE: ", str);
+const res = str.toUpperCase();
+console.log("AFTER: ", res);
+```
+
+```bash filename="TERMINAL"
+BEFORE: Hello World
+AFTER: HELLO WORLD
+```
+
+## toLowerCase ()
+
+The `toLowerCase()` method converts a string to lowercase letters.
+
+```js copy showLineNumbers {3}
+const str = "Hello World";
+console.log("BEFORE: ", str);
+const res = str.toLowerCase();
+console.log("AFTER: ", res);
+```
+
+```bash filename="TERMINAL"
+BEFORE: Hello World
+AFTER: hello world
+```
+
+## parseInt ()
+
+The `parseInt()` function parses a string and returns an integer.
+
+```js copy showLineNumbers
+function convertStringToNumber(str) {
+  console.log("The string is: " + str, "whose type is: " + typeof str);
+  const number = parseInt(str);
+  console.log("The number is: " + number, "whose type is: " + typeof number);
+}
+
+convertStringToNumber("123");
+```
+
+```bash filename="TERMINAL"
+The string is: 123 whose type is: string
+The number is: 123 whose type is: number
+```
+
+Consider this case:
+
+```js copy showLineNumbers
+convertStringToNumber("13.14");
+```
+
+In this case, the output will be:
+
+```bash filename="TERMINAL" {2}
+The string is: 13.14 whose type is: string
+The number is: 13 whose type is: number
+```
+
+Consider this case:
+
+```js copy showLineNumbers
+convertStringToNumber("wee123");
+```
+
+In this case, the output will be:
+
+```bash filename="TERMINAL" {2}
+The string is: wee123 whose type is: string
+The number is: NaN whose type is: number
+```
+
+<Callout type="info">
+  The number is `NaN` because the string contains characters other than numbers.
+</Callout>
+
+Consider this case:
+
+```js copy showLineNumbers
+convertStringToNumber("123wqweqwe");
+```
+
+In this case, the output will be:
+
+```bash filename="TERMINAL" {2}
+The string is: 123wqweqwe whose type is: string
+The number is: 123 whose type is: number
+```
+
+<Callout type="info">
+  The number is `123` because the string contains numbers at the beginning.
+</Callout>
+
+Consider this case:
+
+```js copy showLineNumbers
+convertStringToNumber("qq123qq");
+```
+
+In this case, the output will be:
+
+```bash filename="TERMINAL" {2}
+The string is: qq123qq whose type is: string
+The number is: NaN whose type is: number
+```
+
+<Callout type="info">
+  The number is `NaN` because the string contains numbers in the middle.
+</Callout>
+
+## parseFloat ()
+
+The `parseFloat()` function parses a string and returns a floating point number.
+
+```js copy showLineNumbers
+function convertStringToFloat(str) {
+  console.log("The string is: " + str, "whose type is: " + typeof str);
+  const number = parseFloat(str);
+  console.log("The number is: " + number, "whose type is: " + typeof number);
+}
+
+convertStringToFloat("123.45");
+```
+
+```bash filename="TERMINAL"
+The string is: 123.45 whose type is: string
+The number is: 123.45 whose type is: number
+```

@@ -1,0 +1,57 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# JSON Methods
+
+There are basically two Methods
+
+- `JSON.parse()`
+- `JSON.stringfy()`
+
+## JSON.parse()
+
+<Callout>
+  The JSON.prase will convert the string passed object to the JSON format!
+</Callout>
+
+```js filename="./json_parse.js"
+const data = '{"name":"Swayam", "Age": 19}'; // This is in string format
+console.log("Data:", data, typeof data);
+const user = JSON.parse(data);
+console.log(user, typeof user);
+console.log("Name of user:", user.name);
+```
+
+**Output:**
+
+```bash
+Data: {"name":"Swayam", "Age": 19} string
+{ name: 'Swayam', Age: 19 } object
+Name of user: Swayam
+```
+
+<Callout>
+  You can access the object once you prase it. But before that it will give
+  `undefined`
+</Callout>
+
+## JSON.stringfy()
+
+<Callout>`stringfy()` converts the JSON format to string format!</Callout>
+
+This method converts the JSON format to string format.
+
+```js
+const data = {
+  user_name: "Swayam",
+  age: 21,
+};
+
+const user = JSON.stringify(data);
+console.log(user, ",Type of User: ", typeof user);
+```
+
+**Output:**
+
+```bash
+{"user_name":"Swayam","age":21} ,Type of User:  string
+```

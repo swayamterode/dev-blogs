@@ -1,0 +1,55 @@
+# Basic Array Operations
+
+## Adding and Removing Elements
+
+```js copy
+const initialArray = [1, 2, 3, 4, 5];
+
+//  Remove the last element
+const removedLastElement = initialArray.pop();
+console.log(removedLastElement); // 5
+console.log(initialArray); // [1, 2, 3, 4]
+
+// Remove the first element
+const removedFirstElement = initialArray.shift();
+console.log(removedFirstElement); // 1
+console.log(initialArray); // [2, 3, 4]
+
+// Add an element to the end
+initialArray.push(6);
+console.log(initialArray); // [2, 3, 4, 6]
+
+// Add an element to the beginning
+initialArray.unshift(1);
+console.log(initialArray); // [1, 2, 3, 4, 6]
+```
+
+## Concatenating Arrays
+
+```js copy
+const initalArray = [1, 2, 3];
+const secondaryArray = [4, 5, 11];
+
+const res = initialArray.concat(secondaryArray);
+console.log(res); // [1, 2, 3, 4, 5, 11]
+```
+
+## Traversals
+
+- **forEach()** - Iterates over the elements of an array.
+
+```js copy showNumberLines
+const initialArray = [1, 23, 444];
+
+for (let i = 0; i < initialArray.length; i++) {
+  console.log(initialArray[i]);
+}
+
+initialArray.forEach((element) => {
+  console.log(element);
+});
+```
+
+Explanation: The `forEach()` uses callback function to iterate over the elements of an array. The callback function is called with each element and its index as arguments.
+
+`Map()` and `filter()` are covered [here]().

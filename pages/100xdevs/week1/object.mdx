@@ -1,0 +1,115 @@
+# Object
+
+Object is nothing but key value pairs.
+
+## Define an Object
+
+```js showLineNumbers filename="./object.js"
+const user = {
+  name: "Swayam",
+  age: 21,
+  weight: "70kg",
+};
+```
+
+## `Object.key()`
+
+This method return the keys present in the Object.
+
+```js showLineNumbers
+const user = {
+  name: "Swayam",
+  age: 21,
+  weight: "70kg",
+};
+
+const key = Object.keys(user);
+console.log("Keys of the Object:", key);
+```
+
+**Output:**
+
+```bash
+Keys of the Object: [ 'name', 'age', 'weight' ]
+```
+
+## `Object.values()`
+
+```js showLineNumbers
+const user = {
+  name: "Swayam",
+  age: 21,
+  weight: "70kg",
+};
+
+// Object.values()
+const values = Object.values(user);
+console.log("Values of Object:", values);
+```
+
+**Output:**
+
+```bash
+Values of Object: [ 'Swayam', 21, '70kg' ]
+```
+
+## `Object.entries()`
+
+```js showLineNumbers
+const user = {
+  name: "Swayam",
+  age: 21,
+  weight: "70kg",
+};
+
+// Object.entries()
+const entries = Object.entries(user);
+console.log("Object:", entries);
+```
+
+## `Object.hasOwnProperty()`
+
+This retruns `true` or `false` depending on whether the key is present in Object or not.
+
+```js showLineNumbers
+const user = {
+  name: "Swayam",
+  age: 21,
+  weight: "70kg",
+};
+const hasProp = user.hasOwnProperty("name");
+const hasProp2 = user.hasOwnProperty("test");
+console.log("Does user obj has name as key?", hasProp);
+console.log("Does user obj has test as key?", hasProp2);
+```
+
+**Output:**
+
+```bash
+Does user obj has name as key? true
+Does user obj has test as key? false
+```
+
+## Object.assign()
+
+```js
+const obj = {
+  test1: "test1",
+  test2: "test3",
+  test3: "test3",
+};
+
+let newObj = Object.assign({}, obj, { myNewTest: "new Test" });
+console.log("After using the New Object:", newObj);
+```
+
+**Output:**
+
+```bash
+After using the New Object: {
+  test1: 'test1',
+  test2: 'test3',
+  test3: 'test3',
+  myNewTest: 'new Test'
+}
+```

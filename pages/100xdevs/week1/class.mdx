@@ -1,0 +1,55 @@
+# Class in Js
+
+## How to create a class in Js?
+
+```js
+const dog = {
+  name: "Shero",
+  legCount: 4,
+  bark: function () {
+    console.log("Bark");
+  },
+  colour: "Black",
+};
+```
+
+## How to access the properties of a class?
+
+```js copy
+console.log(dog.name);
+console.log(dog["name"]); // another way to access the properties
+console.log(dog.legCount);
+console.log(dog.colour);
+dog.bark();
+```
+
+```bash filename="TERMINAL"
+Shero
+Shero
+4
+Black
+Bark
+```
+
+## Creating objects using class
+
+```js copy
+class Dog {
+  constructor(name, legCount, colour) {
+    this.name = name;
+    this.legCount = legCount;
+    this.colour = colour;
+  }
+
+  bark() {
+    console.log("Bark");
+  }
+}
+```
+
+```js copy
+const dog1 = new Dog("Shero", 4, "Black");
+const dog2 = new Dog("Tommy", 4, "White");
+```
+
+This is how we create objects using class in Js.
