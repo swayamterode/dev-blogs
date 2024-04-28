@@ -1,0 +1,79 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Getting Started with Mongoose
+
+## Introduction
+
+The first step to create a `model` folder in the `root` of the directory.
+
+The standard structure of the `model` folder is as follows:
+
+<FileTree>
+  <FileTree.Folder name="model" defaultOpen>
+    <FileTree.File name="user.models.js" />
+    <FileTree.File name="todo.models.js" />
+  </FileTree.Folder>
+</FileTree>
+
+This is the common structure of the `model` folder. It is the standard practice to name the file as `filename.models.js`.
+
+<Callout>Use either `model.js` or `models.js` as the file name.</Callout>
+
+## Basics of Mongoose
+
+Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
+
+Mongoose helps us to create schemas and models for MongoDB collections.
+
+<Steps>
+
+### Import Mongoose
+
+```js
+import mongoose from "mongoose";
+```
+
+### Create a Schema
+
+```js
+const userSchema = new mongoose.Schema({});
+```
+
+With the above code, we have created a schema for the user.
+
+### Export the Model
+
+```js
+export default mongoose.model("User", userSchema);
+```
+
+> Why do we need to export the model ❓
+>
+> We need to export the model to use it in other files.
+
+### Mongoose Schema Example
+
+```js showLineNumbers
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema({
+  // Define the schema here
+});
+
+export default mongoose.model("User", userSchema);
+```
+
+</Steps>
+
+## Interview Question
+
+<Callout type="info">
+  How will the model be stored in the database?
+
+The model will be stored in the database as `users`. Mongoose automatically pluralizes the model nameand lowercases it.
+
+</Callout>
+
+## Conclusion
+
+In this article, we learned about the basics of Mongoose and how to create a schema and model using Mongoose.

@@ -1,0 +1,92 @@
+# Coding the Schema and Model
+
+Now we now how to create a schema and model the data, Let's code the schema and model for the `User` collection.
+
+## User Schema
+
+```js
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unqiue: true,
+      lowercase: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Password is required"], // Validation with custom message ✅
+    },
+  },
+  { timestamps: true }
+);
+```
+
+## Sub-Todo Schema
+
+```js
+import mongoose from "mongoose";
+
+const subTodoSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      // We are linking the sub-todo to the user who created it
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  { timestamps: true }
+);
+
+export const SubTodo = mongoose.model("SubTodo", subTodoSchema);
+```
+
+## Todo Schema
+
+```js
+import mongoose from "mongoose";
+
+const Todo = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    subTodos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "SubTodo",
+      },
+    ],
+  },
+  { timestamps: true }
+);
+```
+
+## Conclusion
+
+In this lesson, we learned how to create a schema and model the data using Mongoose. We also learned how to create a schema for a nested document and reference it in another schema. We will use these schemas to create a REST API in the next lesson.
