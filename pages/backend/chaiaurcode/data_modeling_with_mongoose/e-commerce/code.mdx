@@ -1,0 +1,152 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Data Modeling for E-Commerce with Mongoose
+
+## Introduction
+
+This a simple example of how to model an e-commerce application using Mongoose. We will be using the following schema:
+
+- User
+- Product
+- Order
+- Category
+
+The Folder structure will look like this:
+
+<FileTree>
+  <FileTree.Folder name="model" defaultOpen>
+    <FileTree.File name="category.models.js" />
+    <FileTree.File name="order.models.js" />
+    <FileTree.File name="product.models.js" />
+    <FileTree.File name="user.models.js" />
+  </FileTree.Folder>
+</FileTree>
+
+## User
+
+```js showLineNumbers filename="model/user.models.js"
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+  },
+  { timestamp: true }
+);
+
+export const User = mongoose.model("User", userSchema);
+```
+
+This is a simple schema for a user. It has three fields: `username`, `password`, and `email`. The `username` and `email` fields are required and unique. The `password` field is also required but not unique. We also have a `timestamp` field that will automatically add the `createdAt` and `updatedAt` fields to the document.
+
+<Callout>
+  Standard pratice is to give the same name to the model and export const
+  variable. Like `export const User = mongoose.model("User", userSchema);`
+</Callout>
+
+## Product
+
+```js showLineNumbers filename="model/product.models.js"
+import mongoose from "mongoose";
+
+const productSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true },
+    description: { type: String, required: true },
+    productImage: { type: String, required: true }, // We are thinking of storing the image URL via Cloudinary!
+    price: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamp: true }
+);
+
+export const Product = mongoose.model("Product", productSchema);
+```
+
+## Order
+
+```js showLineNumbers {12-20} filename="model/order.models.js"
+import mongoose from "mongoose";
+
+const orderItemSchema = new mongoose.Schema({
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+    required: true,
+  },
+  quantity: { type: Number, required: true },
+});
+
+const addressSchema = new mongoose.Schema(
+  {
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+  },
+  { timestamp: true }
+);
+
+const orderSchema = new mongoose.Schema(
+  {
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    orderItems: {
+      type: [orderItemSchema], // An array of order items (productId, quantity) because there can be multiple products in an order
+    },
+    shippingAddress: {
+      type: addressSchema,
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "Shipped", "Delivered"],
+      default: "Pending",
+    },
+  },
+  { timestamp: true }
+);
+
+export const Order = mongoose.model("Order", orderSchema);
+```
+
+This is a simple schema for an order. It has five fields: `productId`, `customer`, `orderItems`, `shippingAddress`, and `status`. The `productId` and `orderItems` fields are required. The `customer` field is not required.
+
+The `shippingAddress` field is an embedded schema. The `status` field is a string with three possible values: `Pending`, `Shipped`, and `Delivered`.
+
+## Category
+
+```js showLineNumbers filename="model/category.models.js"
+import mongoose from "mongoose";
+
+const categorySchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true },
+  },
+  { timestamp: true }
+);
+
+export const Category = mongoose.model("Category", categorySchema);
+```
+
+## Conclusion
+
+This is a simple example of how to model an e-commerce application using Mongoose. We have defined four schemas: `User`, `Product`, `Order`, and `Category`. Each schema has its own fields and constraints.
