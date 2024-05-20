@@ -1,0 +1,25 @@
+# Callbacks in JS
+
+Callbacks in JS are the `functions that are passed as arguments to other functions`. They are executed after the completion of the task. Callbacks are used to handle asynchronous operations in JavaScript.
+
+```js
+function sqaure(n) {
+  return n * n;
+}
+function cube(n) {
+  return n * n * n;
+}
+
+function task(a, b, cb) {
+  const value1 = fn(a);
+  const value2 = fn(b);
+  return value1 + value2;
+}
+
+task(2, 3, square); // 13
+task(2, 3, cube); // 35
+```
+
+## Need of Callbacks
+
+Callbacks are used to handle asynchronous operations in JavaScript. For example, when you make an API call, you don't know when the response will come back. So, you pass a callback function to the API call, which will be executed after the response is received.

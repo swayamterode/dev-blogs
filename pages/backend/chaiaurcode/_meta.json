@@ -1,3 +1,4 @@
 {
-  "data_modeling_with_mongoose": "ODM Mongoose"
+  "data_modeling_with_mongoose": "ODM Mongoose",
+  "jwt_bcrypt": "JWT and Bcrypt"
 }

@@ -1,0 +1,61 @@
+# Getting Started with Redis
+
+Redis is an open-source, **in-memory data structure** store that can be used as a database, cache, and message broker. It supports various data structures such as strings, hashes, lists, sets, and more. Redis is known for its **high performance**, **scalability**, and **flexibility**.
+
+## Installation
+
+For installation we will use Docker.
+
+`redis/redis-stack`
+
+To start a Redis Stack container using the redis-stack image, run the following command in your terminal:
+
+```bash
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:late
+```
+
+This command will start a Redis Stack container in the background. The container will be accessible on port 6379 for Redis and port 8001 for the **Redis Commander web interface**.
+
+If you go to [http://localhost:8001](http://localhost:8001) in your browser, you will see the **Redis Commander web interface**.
+
+## Interaction with Redis via terminal
+
+Firstly we need to find the **docker image id** of the Redis Stack container. Run the following command in your terminal:
+
+```bash
+docker ps
+```
+
+Then you will see something like this:
+
+| CONTAINER ID | IMAGE                    | COMMAND          | CREATED            | STATUS            | PORTS                                          | NAMES       |
+| ------------ | ------------------------ | ---------------- | ------------------ | ----------------- | ---------------------------------------------- | ----------- |
+| c1c1784be754 | redis/redis-stack:latest | "/entrypoint.sh" | About a minute ago | Up About a minute | 0.0.0.0:6379->6379/tcp, 0.0.0.0:8001->8001/tcp | redis-stack |
+
+Then we need to execute a shell in the Redis Stack container. Run the following command in your terminal:
+
+```bash
+docker exec -it c1c1784be754 bash
+```
+
+Then you will see something like this:
+
+```bash
+root@c1c1784be754:/#
+```
+
+To **test** the connection to the Redis server, run the following command in your terminal:
+
+```bash
+redis-cli ping # PONG
+```
+
+To **interact with Redis via the terminal**, you can use the `redis-cli` command:
+
+```bash
+redis-cli
+```
+
+## Summary
+
+In this guide, we have learned how to install Redis using Docker and how to interact with Redis via the terminal.

@@ -1,0 +1,134 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# JWT and Bcrypt
+
+## Npm Packages
+
+```bash
+npm install jsonwebtoken bcrypt
+```
+
+This will install the `jsonwebtoken` and `bcrypt` packages.
+
+Importing the packages:
+
+```js filename="user.model.js" showLineNumbers {2-3}
+import mongoose, { Schema } from "mongoose";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
+const userSchema = new Schema({
+  userName: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+```
+
+This is the user model schema. We will add a method to generate a **JWT token** and a method to **hash the password**.
+
+## `pre` Middleware
+
+In Mongoose `pre` middleware is a powerful. It allows us to **run some code before saving the document to the database**.
+
+Before saving the user to the database, we will hash the password using the `pre` middleware.
+
+It has 5 types of hooks:
+
+1. `save`
+2. `validate`
+3. `remove`
+4. `updateOne`
+5. 'deleleOne'
+
+```js filename="user.model.js" showLineNumbers
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  // 10 is the number of rounds to hash the password
+});
+```
+
+## Bcrypt compare
+
+Checks with the password in the database and the password that the user is trying to login with are the same or not.
+
+```js filename="user.model.js" showLineNumbers
+userSchema.methods.checkPassword = async function (password) {
+  return await bcrypt.compare(password, this.password); // returns a boolean
+};
+```
+
+Mongoose provides a way to add methods to the schema. We can add a method to the schema using the `methods` property.
+
+Simple syntax to add a method to the schema:
+
+```js
+import { Schema } from "mongoose";
+
+Schema.methods.methodName = function () {
+  // method logic
+};
+```
+
+## `.env` File
+
+<Callout>
+  This is the `.env` file. It contains the environment variables.
+</Callout>
+
+```bash PORT=8080 MONGO_URI=mongodb+srv://swayamt:password@cluster0.jkxzwem.mongodb.net/
+CORS_ORIGIN=* ACCESS_TOKEN_SECRET=ls1QLX1QdZrZ4RI5VjiR27QRigaGcXkeZGs3ogi6VVdStTSFEtQB9HGLjTqtgDbtXoY32FEwhHHCd5km7oWGTwrKqpbrrOSAH323
+ACCESS_TOKEN_EXPIRY=1d REFRESH_TOKEN_SECRET=IVxA8xMaXLDFuZZxSYxo1M0GvcZizV4qrgMF9qh8eIFhM5gwfqFUEDvGhGdoCz4HFX0tg3roeOV5MSDKey31Cl6QlMiMeJccHI1
+REFRESH_TOKEN_EXPIRY=10d
+```
+
+## generateAccessToken Method
+
+```js filename="user.model.js" showLineNumbers
+// Generates an access token (JWT token)
+userSchema.methods.generateAccessToken = async function () {
+  return jwt.sign(
+    {
+      _id: this.id,
+      username: this.username,
+      email: this.email,
+      fullName: this.fullName,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
+  );
+};
+```
+
+## generateRefreshToken Method
+
+```js filename="user.model.js" showLineNumbers
+//  Generates a refresh token (JWT token)
+userSchema.methods.generateRefreshToken = async function () {
+  return jwt.sign(
+    {
+      _id: this.id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+    }
+  );
+};
+```
+
+**Note**: The `this` keyword refers to the document instance.

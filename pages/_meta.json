@@ -5,7 +5,9 @@
   "backend": "Backend",
   "css_snippets": "CSS Snippets",
   "frontend": "Frontend",
+  "js_interview_questions": "JS Interview Questions",
   "kafka": "Kafka",
+  "redis": "Redis",
   "demo": {
     "title": "Portfolio ↗",
     "type": "page",
