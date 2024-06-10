@@ -1,0 +1,53 @@
+# Datatypes in SQL
+
+Datatypes are used to define the type of data that a column can hold in a table. SQL supports a wide range of datatypes, which can be broadly classified into the following categories:
+
+1. Numeric Datatypes
+2. Character Datatypes
+3. Date and Time Datatypes
+4. Binary Datatypes
+5. Miscellaneous Datatypes
+
+Let's take a look at each of these categories in detail.
+
+## 1. Numeric Datatypes
+
+Numeric datatypes are used to store numeric values. The following are some of the commonly used numeric datatypes in SQL:
+
+- `INT`: Used to store integer values.
+- `DECIMAL(p, s)`: Used to store fixed-point numbers with `p` digits in total, `s` of which are after the decimal point.
+- `FLOAT(p)`: Used to store floating-point numbers with `p` digits of precision.
+- `REAL`: Used to store floating-point numbers with single precision.
+- `DOUBLE PRECISION`: Used to store floating-point numbers with double precision.
+
+## 2. Character Datatypes
+
+Character datatypes are used to store character strings. The following are some of the commonly used character datatypes in SQL:
+
+- `CHAR(n)`: Used to store fixed-length character strings of length `n`.
+- `VARCHAR(n)`: Used to store variable-length character strings of maximum length `n`.
+- `TEXT`: Used to store large character strings.
+
+## 3. Date and Time Datatypes
+
+Date and time datatypes are used to store date and time values. The following are some of the commonly used date and time datatypes in SQL:
+
+- `DATE`: Used to store date values in the format `YYYY-MM-DD`.
+- `TIME`: Used to store time values in the format `HH:MM:SS`.
+- `TIMESTAMP`: Used to store date and time values in the format `YYYY-MM-DD HH:MM:SS`.
+
+## 4. Binary Datatypes
+
+Binary datatypes are used to store binary data. The following are some of the commonly used binary datatypes in SQL:
+
+- `BINARY(n)`: Used to store fixed-length binary data of length `n`. Ex: `BINARY(16)` for storing UUID.
+- `VARBINARY(n)`: Used to store variable-length binary data of maximum length `n`. Ex: `VARBINARY(255)` for storing images.
+- `BLOB`: Used to store large binary data. Ex: `BLOB` for storing files.
+
+## 5. Miscellaneous Datatypes
+
+There are several other datatypes that are used for specific purposes. Some of the commonly used miscellaneous datatypes in SQL are:
+
+- `BOOLEAN`: Used to store boolean values (`TRUE` or `FALSE`).
+- `ENUM`: Used to store one of a predefined list of values.
+- `SET`: Used to store a set of values chosen from a predefined list.

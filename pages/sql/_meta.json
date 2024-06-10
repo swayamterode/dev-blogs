@@ -1,6 +1,7 @@
 {
-  "introduction": "Introduction",
-  "types-of-sql-commands": "Types of SQL Commands",
-  "database-queries": "Database Queries",
-  "table-queries": "Table Queries"
+  "introduction": "1. Introduction",
+  "types-of-sql-commands": "2. Types of SQL Commands",
+  "database-queries": "3. Database Queries",
+  "table-queries": "4. Table Queries",
+  "datatypes": "5. Data Types"
 }
