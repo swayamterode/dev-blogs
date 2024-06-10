@@ -1,0 +1,45 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Table Queries
+
+Operation we will perform on a table are called table queries.
+
+## Creating TABLE
+
+```sql filename="syntax.sql"
+CREATE TABLE table_name (
+    column1_name column1_datatype,
+    column2_name column2_datatype,
+    ...
+);
+```
+
+<Callout>
+  The `CREATE TABLE` statement is used to create a new table in a database.
+</Callout>
+
+**Example:**
+
+```sql filename="example.sql"
+CREATE TABLE course(
+    cid INT,
+    cname VARCHAR(50),
+);
+```
+
+## INSERT VALUES
+
+```sql filename="syntax.sql"
+INSERT INTO table_name (column1, column2, column3, ...);
+```
+
+<Callout>
+  The `INSERT INTO` statement is used to insert new records in a table.
+</Callout>
+
+**Example:**
+
+```sql filename="example.sql"
+INSERT INTO course (cid, cname) VALUES (1, 'Java'), (2, 'Python');
+```
+
