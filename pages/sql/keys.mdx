@@ -1,0 +1,50 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+Keys are used to establish relationships between tables in a database. They are used to uniquely identify records in a table and to establish relationships between tables. There are several types of keys in SQL, each with its own purpose.
+
+- Rows in a table are known as `tuple`.
+- Columns in a table are known as `attributes`.
+
+Consider the following table `employee`:
+
+| emp_id | emp_name | emp_salary | emp_mobile_number | emp_age |
+| ------ | -------- | ---------- | ----------------- | ------- |
+| 1      | Alice    | 50000      | 9876543210        | 30      |
+| 2      | Bob      | 60000      | 8765432109        | 35      |
+| 3      | Charlie  | 70000      | 7654321098        | 40      |
+
+## 1. Primary Key
+
+So according to the above table we can see that `emp_id` is unique for each employee. So, `emp_id` can be used as a **primary key** for the table `employee`.
+
+A primary key is a column or a set of columns that uniquely identifies each record in a table. It must contain **unique** values and **cannot contain `NULL` values**. A table can have only one primary key.
+
+## 2. Foreign Key
+
+Consider the following tables `employee` and `department`:
+
+Employee Table:
+
+| emp_id | emp_name | emp_salary | emp_mobile_number | emp_age |
+| ------ | -------- | ---------- | ----------------- | ------- |
+| 1      | Alice    | 50000      | 9876543210        | 30      |
+| 2      | Bob      | 60000      | 8765432109        | 35      |
+| 3      | Charlie  | 70000      | 7654321098        | 40      |
+
+Department Table:
+
+| emp_id | department_name | department_location |
+| ------ | --------------- | ------------------- |
+| 1      | HR              | New York            |
+| 2      | Finance         | London              |
+| 3      | IT              | Tokyo               |
+
+In the above table `department`, `emp_id` is a **foreign key**.
+
+<Callout>
+  A foreign key is a column or a set of columns in a table that establishes a
+  relationship with a primary key in another table. It is used to link two
+  tables together.
+</Callout>
+
+Here the **employee** table is known as the `Base / Referenced Table` and the **department** table is known as the `Referencing Table`.

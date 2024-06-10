@@ -3,5 +3,6 @@
   "types-of-sql-commands": "2. Types of SQL Commands",
   "database-queries": "3. Database Queries",
   "table-queries": "4. Table Queries",
-  "datatypes": "5. Data Types"
+  "datatypes": "5. Data Types",
+  "keys": "6. Keys"
 }
