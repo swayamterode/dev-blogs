@@ -5,12 +5,13 @@
   "backend": "Backend",
   "css_snippets": "CSS Snippets",
   "frontend": "Frontend",
-  "sql": "SQL",
   "js_interview_questions": "JS Interview Questions",
   "kafka": "Kafka",
+  "learn_language": "Learn Languages",
   "redis": "Redis",
+  "sql": "SQL",
   "demo": {
-    "title": "Portfolio ↗",
+    "title": "Portfolio 🔥",
     "type": "page",
     "href": "https://terode.vercel.app/",
     "newWindow": true
