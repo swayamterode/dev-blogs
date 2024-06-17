@@ -1,0 +1,134 @@
+# Basics of TypeScript
+
+## Data Types
+
+There are several data types in TypeScript. Here are some of them:
+
+`number`,`string`,`boolean`,`object`,`array`,`tuple`,`enum`,`any`,`void`,`null`,`undefined`
+
+## Code Example
+
+```typescript filename="example.ts"
+let num: number = 5;
+let name: string = "swayam";
+let isTrue: boolean = true;
+let obj: object = { name: "swayam", age: 20 };
+let arr: number[] = [1, 2, 3, 4, 5];
+let tuple: [string, number] = ["swayam", 20];
+enum Color {
+  Red,
+  Green,
+  Blue,
+}
+```
+
+## Arrays and Tuple
+
+```typescript filename="arraysandtuple.ts"
+let arr: number[] = [1, 2, 3, 4, 5];
+let tuple: [string, number, bool] = ["Swayam", 22, true];
+
+// If you use different data type in tuple, it will throw an error
+
+let tuple: [string, number, bool] = ["Swayam", 22, "true"]; // Error
+
+// Tuple array
+
+let tupleArr: [string, number][] = [
+  ["Swayam", 22],
+  ["John", 25],
+];
+```
+
+## Union
+
+```typescript filename="union.ts"
+let name: string | number = "Swayam";
+name = 22;
+```
+
+Note: You can use `|` to define multiple data types.
+
+## Enum
+
+Enum is a way to store a set of constants. It is like an object with a set of key-value pairs.
+
+```typescript filename="enum.ts"
+enum Color {
+  Red,
+  Green,
+  Blue,
+}
+
+let color: Color = Color.Red; // 0
+color = Color.Green; // 1
+```
+
+## Objects
+
+```typescript filename="objects.ts"
+const user: {
+    name: string;
+    age: number;
+    hobbies: string[];
+    mobileNumber: number;
+} = {
+    "name": "Swayam",
+    "age": 22
+    "hobbies": ["coding", "ping-pong"]
+    "mobileNumber": 1234567890
+}
+
+console.log(user.name); // Swayam
+log(user.hobbies); // ["coding", "ping-pong"]
+```
+
+## Type
+
+Another way to define objects is by using types.
+
+```typescript filename="types.ts" {1-6}
+type User = {
+    name: string;
+    age: number;
+    hobbies: string[];
+    mobileNumber: number;
+}
+
+const user: User = {
+    "name": "Swayam",
+    "age": 22
+    "hobbies": ["coding", "ping-pong"]
+    "mobileNumber": 123456
+}
+```
+
+Types are reusable and can be used in multiple places.
+
+## Interfaces
+
+Interfaces are similar to types but they are more flexible.
+
+```typescript filename="interfaces.ts" {1-6}
+interface User {
+    name: string;
+    age: number;
+    hobbies: string[];
+    mobileNumber: number;
+}
+
+const user: User = {
+    "name": "Swayam",
+    "age": 22
+    "hobbies": ["coding", "ping-pong"]
+    "mobileNumber": 123456
+}
+```
+
+### Difference between Types and Interfaces
+
+| **Types**                                                       | **Interfaces**                |
+| :-------------------------------------------------------------- | :---------------------------- |
+| Can be used with primitive data types, unions, tuples, and more | Can only be used with objects |
+| Can be used with `typeof`                                       | Can be used with `extends`    |
+| Can be used with `keyof`                                        | Can be used with `implements` |
