@@ -107,3 +107,81 @@ INSERT INTO student (name, age) VALUES ('Swayam', 22);
 </Callout>
 
 </details>
+
+## CHECK Constraint
+
+The `CHECK` constraint ensures that all values in a column satisfy a specific condition.
+
+<details>
+  <summary>Click to see the details</summary>
+
+Let's create a table `student` with a `age` column. We will add a `CHECK` constraint to the `age` column to ensure that the age is greater than 18.
+
+```sql filename="table.sql" {3}
+CREATE TABLE IF NOT EXISTS student (
+name VARCHAR(50),
+age INT CHECK (age > 18)
+);
+```
+
+<Callout>
+  The `CHECK` constraint ensures that all values in the `age` column are greater
+  than 18.
+</Callout>
+
+**Example:**
+
+```sql filename="example_query.sql"
+INSERT INTO student (name, age) VALUES ('Swayam', 16);
+```
+
+**Output:**
+
+![CHECK Error](../../public/sql/constraints_check_error.png)
+
+**Correct Code:**
+
+```sql filename="example_query.sql"
+INSERT INTO student (name, age) VALUES ('Swayam', 18);
+```
+
+**Output:**
+
+![CHECK Error Fix](../../public/sql/constraints_check_error_fix.png)
+
+</details>
+
+## DEFAULT Constraint
+
+The `DEFAULT` constraint sets a default value for a column when no value is specified.
+
+<details>
+  <summary>Click to see the details</summary>
+
+Let's create a table `student` with a `school` column. We will add a `DEFAULT` constraint to the `school` column to set a default value.
+
+```sql filename="table.sql"
+CREATE TABLE IF NOT EXISTS student (
+name VARCHAR(50),
+school VARCHAR(50) DEFAULT 'GHRCEM',
+age INT NOT NULL CHECK (age >=18)
+);
+```
+
+<Callout>
+  The `DEFAULT` constraint sets the default value of the `school` column to
+  'GHRCEM'.
+</Callout>
+
+**Example:**
+
+```sql filename="example_query.sql"
+INSERT INTO student (name, age)
+VALUES ('Swayam', 22);
+```
+
+**Output:**
+
+![DEFAULT Error](../../public/sql/constraints_default.png)
+
+</details>
