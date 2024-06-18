@@ -1,0 +1,23 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Update
+
+Update is used to modify the existing records in a table. It is used to update the values of the columns in the table.
+
+Consider this secario, you have ordered food from Zomato and you have given name as Swaym instead of Swayam. Then you can update the name in the database using the `UPDATE` statement.
+
+Most of the time the SQL workbench will give error if you try to update the table values.
+
+To deal with it use`SET SQL_SAFE_UPDATES=0;` before updating the table.
+
+```sql
+
+UPDATE customer
+SET name="Swayam"
+WHERE name="Swaym" AND order_id=1234;
+```
+
+<Callout>
+  This will update the name of the customer from Swaym to Swayam where the name
+  is Swaym and order_id is 1234.
+</Callout>
