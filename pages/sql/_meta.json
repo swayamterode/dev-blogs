@@ -4,5 +4,6 @@
   "database-queries": "3. Database Queries",
   "table-queries": "4. Table Queries",
   "datatypes": "5. Data Types",
-  "keys": "6. Keys"
+  "keys": "6. Keys",
+  "constraints": "7. Constraints"
 }

@@ -1,0 +1,109 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Constraints
+
+Constraints defines rules or restrictions that are enforced on data columns in a table. These are used to prevent invalid data from being entered into the database. This ensures the accuracy and reliability of the data in the database.
+
+## Types of Constraints
+
+There are several types of constraints in SQL. They are:
+
+1. `NOT NULL`: Ensures that a column cannot have a NULL value.
+2. `UNIQUE`: Ensures that all values in a column are different.
+3. `PRIMARY KEY`: A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table.
+4. `FOREIGN KEY`: Uniquely identifies a row/record in another table.
+5. `CHECK`: Ensures that all values in a column satisfy a specific condition.
+6. `DEFAULT`: Sets a default value for a column when no value is specified.
+7. `INDEX`: Used to create and retrieve data from the database very quickly.
+
+## Examples
+
+### UNIQUE Constraint
+
+The `UNIQUE` constraint ensures that all values in a column are different. For example, if we have a table `student` where **phonenumber** is one of the columns, we can use the `UNIQUE` constraint to ensure that all phone numbers are unique.
+
+<details>
+  <summary>Click to see the details</summary>
+
+Let's create a table `student` with a `phonenumber` column and add a `UNIQUE` constraint to it.
+
+```sql filename="table.sql"
+CREATE TABLE IF NOT EXISTS student (
+phonenumber INT UNIQUE
+);
+```
+
+<Callout>
+  This will ensure that all phone numbers in the `student` table are unique.
+</Callout>
+
+**Expected Output for wrong query:**
+
+```sql filename="example_query.sql"
+-- Inserting values in college
+INSERT INTO student (phonenumber) VALUES
+(1323),(1233344),(1323);
+```
+
+**Output:**
+
+![UNIQUE Error](../../public/sql/constraints_unique_error.png)
+
+**Correct way:**
+
+```sql filename="example_query.sql"
+-- Inserting values in college
+INSERT INTO student (phonenumber) VALUES
+(1323),(1233344);
+```
+
+**Output:**
+
+![UNIQUE Error Fix](../../public/sql/constraints_unique_error_fix.png)
+
+</details>
+
+## NOT NULL Constraint
+
+NOT NULL constraint ensures that a **column cannot have a NULL value**.
+
+<details>
+  <summary>Click to see the details</summary>
+
+Let's create a table `student` with a `name` and `age` column. We will add a `NOT NULL` constraint to the `age` column.
+
+```sql filename="table.sql" {3}
+CREATE TABLE IF NOT EXISTS student (
+name VARCHAR(50),
+age INT NOT NULL
+);
+```
+
+The `NOT NULL` constraint ensures that a column **cannot have a NULL value**. In the above example, the `age` column cannot have a NULL value.
+
+**Example:**
+
+```sql filename="example_query.sql"
+INSERT INTO student (name) VALUES ('Swayam');
+```
+
+**Output:**
+
+![NOT NULL Error](../../public/sql/constraints_not_null_error.png)
+
+**Correct Code:**
+
+```sql filename="example_query.sql"
+INSERT INTO student (name, age) VALUES ('Swayam', 22);
+```
+
+**Output:**
+
+![NOT NULL Error Fix](../../public/sql/constraints_not_null_error_fix.png)
+
+<Callout>
+  The `NOT NULL` constraint ensures that the `age` column cannot have a NULL
+  value.
+</Callout>
+
+</details>
