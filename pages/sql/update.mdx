@@ -10,8 +10,7 @@ Most of the time the SQL workbench will give error if you try to update the tabl
 
 To deal with it use`SET SQL_SAFE_UPDATES=0;` before updating the table.
 
-```sql
-
+```sql filename="update_query.sql"
 UPDATE customer
 SET name="Swayam"
 WHERE name="Swaym" AND order_id=1234;
