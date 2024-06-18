@@ -63,7 +63,7 @@ INSERT INTO student (phonenumber) VALUES
 
 </details>
 
-## NOT NULL Constraint
+### NOT NULL Constraint
 
 NOT NULL constraint ensures that a **column cannot have a NULL value**.
 
@@ -108,7 +108,7 @@ INSERT INTO student (name, age) VALUES ('Swayam', 22);
 
 </details>
 
-## CHECK Constraint
+### CHECK Constraint
 
 The `CHECK` constraint ensures that all values in a column satisfy a specific condition.
 
@@ -151,7 +151,7 @@ INSERT INTO student (name, age) VALUES ('Swayam', 18);
 
 </details>
 
-## DEFAULT Constraint
+### DEFAULT Constraint
 
 The `DEFAULT` constraint sets a default value for a column when no value is specified.
 
@@ -185,3 +185,62 @@ VALUES ('Swayam', 22);
 ![DEFAULT Error](../../public/sql/constraints_default.png)
 
 </details>
+
+### PRIMARY KEY Constraint
+
+Primary key constraint uniquely identifies each row in a table.
+
+<details>
+  <summary>Click to see the details</summary>
+
+<Callout>
+  **`Unique + Not Null`** constraints are automatically added to the primary key
+  column.
+</Callout>
+
+```sql filename="table.sql"
+CREATE TABLE IF NOT EXISTS student (
+name VARCHAR(50),
+school VARCHAR(50) DEFAULT 'GHRCEM',
+age INT NOT NULL CHECK (age >=18),
+rollnumber INT PRIMARY KEY
+);
+```
+
+<Callout>
+  The `PRIMARY KEY` constraint ensures that the `rollnumber` column uniquely
+  identifies each row in the `student` table.
+</Callout>
+
+Inserting values into the table:
+
+```sql filename="example_query.sql"
+-- Inserting values in TABLE student
+INSERT INTO student (name,age, rollnumber)
+VALUES
+("Swayam",18,1),
+("Ravi",21,2);
+```
+
+</details>
+
+## FOREIGN KEY Constraint
+
+The `FOREIGN KEY` constraint uniquely identifies a row/record in another table.
+
+ <details>
+   <summary>Click to see the details</summary>
+
+Let's create two tables `student` and `student2`. The `student2` table has a `rollnumber` column, which is a foreign key that references the `rollnumber` column in the `student` table.
+
+```sql filename="foreign.sql"
+CREATE TABLE student2 (
+name VARCHAR(50),
+rollnumber INT,
+FOREIGN KEY (rollnumber) REFERENCES student(rollnumber)
+);
+```
+
+Create a relationship between two tables. The `student` table has a `rollnumber` column, which is a foreign key that references the `rollnumber` column in the `marks` table.
+
+ </details>
