@@ -1,0 +1,49 @@
+# Delete Query
+
+Delete query is used to delete rows from a table based on a condition.
+
+Let's create a table named `info` with columns `name` and `rollnumber`.
+
+```sql filename="delete_query.sql"
+CREATE TABLE info (
+name VARCHAR(50),
+rollnumber INT PRIMARY KEY
+);
+
+-- INSERT values into the table
+INSERT INTO info (name, rollnumber)
+VALUES
+("Swayam", 1), ("Raj",2), ("Raj", 3);
+```
+
+Now let's see all the rows in the table.
+
+```sql filename="select_query.sql"
+SELECT * FROM info;
+```
+
+Output:
+
+| name   | rollnumber |
+| ------ | ---------- |
+| Swayam | 1          |
+| Raj    | 2          |
+| Raj    | 3          |
+
+Now let's delete the row where `name` is `Raj`.
+
+```sql filename="delete_query.sql"
+DELETE FROM info WHERE name = "Raj";
+```
+
+Now let's see all the rows in the table.
+
+```sql filename="select_query.sql"
+SELECT * FROM info;
+```
+
+Output:
+
+| name   | rollnumber |
+| ------ | ---------- |
+| Swayam | 1          |

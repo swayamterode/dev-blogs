@@ -6,5 +6,6 @@
   "datatypes": "5. Data Types",
   "keys": "6. Keys",
   "constraints": "7. Constraints",
-  "update": "8. Update Query"
+  "update": "8. Update Query",
+  "delete": "9. Delete Query"
 }
