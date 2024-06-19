@@ -1,0 +1,46 @@
+# WHERE Caluse in SQL
+
+In SQL, the **WHERE clause** is used to **filter records**. The WHERE clause is used to extract only those records that fulfill a specified condition.
+
+The WHERE clause is not only used in the SELECT statement, but it is also used in the UPDATE, DELETE statement, etc., which we will discuss in the upcoming chapters.
+
+## Syntax
+
+The basic syntax of the WHERE clause is as follows:
+
+```sql filename="example.sql"
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+## Example
+
+```sql filename="example.sql"
+CREATE DATABASE restaurant;
+USE restaurant;
+
+CREATE TABLE info (
+name VARCHAR(50),
+state VARCHAR(50),
+pincode INT
+);
+
+INSERT INTO info (name, state, pincode)
+VALUES
+("KCF", "Maharashtra", 442917), ("Ranwara","Gujrat", 442918), ("Hotel Raj","Tamil Nadu", 441119);
+
+SELECT * from info;
+
+SELECT *from info WHERE STATE = "Maharashtra";
+```
+
+In the above example, we have created a table named info and inserted some records into it. We have used the WHERE clause to filter the records where the state is Maharashtra.
+
+## Output
+
+| name | state       | pincode |
+| ---- | ----------- | ------- |
+| KCF  | Maharashtra | 442917  |
+
+In the output, we can see that only the record with the state Maharashtra is displayed.

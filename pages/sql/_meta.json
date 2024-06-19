@@ -7,5 +7,6 @@
   "keys": "6. Keys",
   "constraints": "7. Constraints",
   "update": "8. Update Query",
-  "delete": "9. Delete Query"
+  "delete": "9. Delete Query",
+  "where_clause": "10. WHERE Clause"
 }
