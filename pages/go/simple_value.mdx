@@ -1,0 +1,47 @@
+# Simple Value in Go
+
+The are several simple value types in Go. These are the basic building blocks of any Go program:
+
+- String
+- Integer
+- Float
+- Char
+- Boolean
+- Rune
+
+## Code example
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// simple values
+	// int
+	fmt.Println(42) // 42
+	fmt.Printf("%T\n", 42) // int
+
+	// float
+	fmt.Println(3.14); // 3.14
+	fmt.Printf("%T\n", 3.14) // float64
+
+    // string
+	fmt.Println("Hello, World!\t") // Hello, World!
+	fmt.Printf("%T\n", "Hello, World!\t") // string
+
+    // boolean
+	fmt.Println(true) // true
+	fmt.Printf("%T\n", true) // bool
+	fmt.Println(false) // false
+	fmt.Printf("%T\n", false)// bool
+
+	// rune
+	fmt.Println('H') // H
+	fmt.Printf("%T\n", 'H') // int32
+
+	//char
+	fmt.Println("H")// H
+	fmt.Printf("%T\n", "H")// string
+}
+```
