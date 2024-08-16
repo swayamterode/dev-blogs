@@ -1,0 +1,45 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Hello World
+
+Let's write our first program in Go.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, World!")
+}
+```
+
+## How to Build?
+
+To build the program, run the following command:
+
+```bash
+go build hello.go
+```
+
+<Callout>
+  The above command will create an executable file named `hello`
+</Callout>
+
+## How to Run?
+
+To run the program, execute the following command:
+
+```bash
+./hello
+```
+
+## Efficient way to run the code
+
+You can also run the code without creating an executable file. To do so, run the following command:
+
+```bash
+go run hello.go
+```
+
+<Callout>The above command will compile and run the code in one step.</Callout>
