@@ -1,0 +1,118 @@
+import { Callout, Steps, FileTree, Tabs } from "nextra/components";
+
+# Variables in Go
+
+Variables are used to store data in a program. In Go, variables are declared using the `var` keyword. The syntax for declaring a variable is:
+
+<Callout type="info">
+  We dont use `const` keyword to declare a variable in Go. We use `var` keyword
+  to declare a variable.
+</Callout>
+
+```go showLineNumbers filename="variables.go"
+package main
+
+import "fmt"
+
+// Declaring a variable
+func main() {
+	// One way to declare a variable
+	var name string = "Swayam"
+	fmt.Println(name)
+
+	// Short hand declaration
+	sirName := "Terode"
+	fmt.Println(sirName)
+
+	// Multiple variable declaration
+	var (
+		age int = 21
+		year int = 2021
+	)
+	fmt.Println(age, year)
+
+	// Multiple variable declaration with short hand
+	var (
+		roll int = 1
+		branch string = "IT"
+	)
+	fmt.Println(roll, branch)
+
+	// Declaring multiple variables with short hand
+	rollNo, branchName := 1, "IT"
+	fmt.Println(rollNo, branchName)
+
+	// Declaring a variable with no value
+	var address string
+	address = "Pune"
+	fmt.Println("\nAddress: ",address)
+}
+```
+
+## Let's break down the code
+
+### Declaring a variable
+
+```go
+// One way to declare a variable
+var name string = "Swayam"
+fmt.Println(name)
+```
+
+- `var name string = "Swayam"`: This is the syntax to declare a variable in Go. Here, `name` is the variable name, `string` is the data type of the variable, and `"Swayam"` is the value assigned to the variable.
+
+### Short hand declaration
+
+```go
+// Short hand declaration
+sirName := "Terode"
+fmt.Println(sirName)
+```
+
+- `sirName := "Terode"`: This is the short-hand declaration of a variable in Go. Here, `sirName` is the variable name, and `"Terode"` is the value assigned to the variable. The data type of the variable is inferred from the value assigned to it.
+
+### Multiple variable declaration
+
+```go
+// Multiple variable declaration
+var (
+    age int = 21
+    year int = 2021
+)
+fmt.Println(age, year)
+```
+
+- `var ( ... )`: This is the syntax to declare multiple variables in Go. Here, `age` and `year` are the variable names, `int` is the data type of the variables, and `21` and `2021` are the values assigned to the variables.
+
+### Multiple variable declaration with short hand
+
+```go
+// Declaring multiple variables with short hand
+rollNo, branchName := 1, "IT"
+fmt.Println(rollNo, branchName)
+```
+
+- `rollNo, branchName := 1, "IT"`: This is the short-hand declaration of multiple variables in Go. Here, `rollNo` and `branchName` are the variable names, and `1` and `"IT"` are the values assigned to the variables. The data types of the variables are inferred from the values assigned to them.
+
+### Declaring a variable with no value
+
+```go
+// Declaring a variable with no value
+var address string
+address = "Pune"
+fmt.Println("\nAddress: ",address)
+```
+
+- `var address string`: This is the syntax to declare a variable in Go without assigning a value to it. Here, `address` is the variable name, and `string` is the data type of the variable.
+
+## Output
+
+```bash
+Swayam
+Terode
+21 2021
+1 IT
+1 IT
+
+Address:  Pune
+```
