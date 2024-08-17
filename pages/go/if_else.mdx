@@ -1,0 +1,92 @@
+# If else in Go
+
+In Go, the `if` statement is used to execute a block of code if a condition is true. If the condition is false, the code block is skipped.
+
+## Code
+
+```go showLineNumbers
+package main
+
+import "fmt"
+
+func main() {
+	//  if else statement
+	fmt.Println("Enter a number: ")
+	var num int
+	fmt.Scanln(&num)
+	if num >=18 {
+		fmt.Println("You are eligible to vote")
+	} else {
+		fmt.Println("You are not eligible to vote")
+	}
+
+	//  this is a short statement
+	if age:=18; age<60 {
+		fmt.Println("You are in the working age group")
+	} else {
+		fmt.Println("You are not in the working age group")
+	}
+	// this is a short statement
+	if num:=10; num%2==0 {
+		fmt.Println("Even number")
+	} else {
+		fmt.Println("Odd number")
+	}
+}
+```
+
+## Output
+
+```text
+Enter a number:
+20
+You are eligible to vote
+You are in the working age group
+Even number
+```
+
+## Explanation
+
+### If-Else Statement
+
+```go showLineNumbers
+fmt.Println("Enter a number: ")
+var num int
+fmt.Scanln(&num)
+if num >= 18 {
+    fmt.Println("You are eligible to vote")
+} else {
+    fmt.Println("You are not eligible to vote")
+}
+```
+
+- Prompts the user to enter a number and reads it into the variable num.
+- Checks if the entered number is greater than or equal to `18`.
+- Prints **You are eligible to vote** if the condition is true; otherwise, prints **You are not eligible to vote.**
+
+### If Statement with a Short Variable Declaration
+
+```go showLineNumbers
+if age := 18; age < 60 {
+fmt.Println("You are in the working age group")
+} else {
+fmt.Println("You are not in the working age group")
+}
+```
+
+- Declares and initializes age to `18` within the if statement.
+- Checks if age is less than `60`.
+- Prints **You are in the working age group** if true; otherwise, prints **You are not in the working age group.**
+- If Statement with a Short Variable Declaration and Modulo Operation:
+
+```go showLineNumbers
+if num := 10; num%2 == 0 {
+fmt.Println("Even number")
+} else {
+fmt.Println("Odd number")
+}
+```
+
+- Declares and initializes num to 10 within the if statement.
+- Checks if num is even by evaluating the condition `num % 2 == 0`.
+- Prints `Even number` if **true**; otherwise, prints `Odd number.`
