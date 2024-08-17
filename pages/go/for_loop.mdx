@@ -1,0 +1,114 @@
+# For Loop
+
+A for loop is a control flow statement for specifying iteration, which allows code to be executed repeatedly.
+
+## Code example
+
+```go showLineNumbers
+package main
+
+import "fmt"
+
+func main() {
+	// Simple loop
+	count := 10
+	for i := 0; i < count; i++ {
+		fmt.Println(i)
+	}
+
+	// Infinite loop (Commented out to prevent infinite execution)
+	// for {
+	// 	fmt.Println("Infinite loop")
+	// }
+
+	// Loop with range - Corrected Example
+	fmt.Println("\nLoop with Range over a Slice:")
+	numbers := []int{1, 2, 3}
+	for j := range numbers {
+		fmt.Println(j)
+	}
+
+	// Loop with range - Iterating over the values in a slice
+	fmt.Println("\nLoop with Range and Values:")
+	for index, value := range numbers {
+		fmt.Printf("Index: %d, Value: %d\n", index, value)
+	}
+}
+
+```
+
+## Output
+
+```bash
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+Loop with Range over a Slice:
+0
+1
+2
+
+Loop with Range and Values:
+Index: 0, Value: 1
+Index: 1, Value: 2
+Index: 2, Value: 3
+```
+
+## Explanation
+
+### Simple Loop
+
+```go showLineNumbers
+count := 10
+for i := 0; i < count; i++ {
+fmt.Println(i)
+}
+```
+
+- Initializes a loop that iterates from 0 to count-1 (i.e., 0 to 9).
+- Prints the value of i in each iteration.
+
+### Infinite Loop (Commented Out)
+
+```go showLineNumbers
+// Infinite loop (Commented out to prevent infinite execution)
+for {
+fmt.Println("Infinite loop")
+}
+```
+
+- It is commented out to avoid an infinite execution that would hang the program.
+
+### Loop with range Over a Slice
+
+```go showLineNumbers
+fmt.Println("\nLoop with Range over a Slice:")
+numbers := []int{1, 2, 3}
+for j := range numbers {
+fmt.Println(j)
+}
+```
+
+- Declares a slice numbers with elements [1, 2, 3].
+- Iterates over the indices of the slice using range.
+- Prints each index j of the slice.
+
+### Loop with range - Iterating Over Values:
+
+```go showLineNumbers
+fmt.Println("\nLoop with Range and Values:")
+for index, value := range numbers {
+fmt.Printf("Index: %d, Value: %d\n", index, value)
+}
+```
+
+- Uses range to iterate over both indices and values of the slice.
+- Prints both the index and the corresponding value for each element in the slice.
