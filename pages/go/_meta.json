@@ -4,5 +4,6 @@
   "simple_value": "02. Simple Values",
   "variables": "03. Variables",
   "for_loop": "04. For Loop",
-  "if_else": "05. If Else"
+  "if_else": "05. If Else",
+  "arrays": "06. Arrays"
 }

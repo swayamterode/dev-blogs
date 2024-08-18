@@ -1,0 +1,50 @@
+# Arrays
+
+Arrays in go are once defined, you can't change their size. This is a major difference between go and other languages like Python, JavaScript, etc.
+
+```go showLineNumbers
+package main
+
+import "fmt"
+
+func main(){
+	var nums [5] int
+	nums[0] = 1
+	nums[1] = 2
+	nums[2] = 3
+
+	fmt.Println(nums)
+
+	// 1-D Array
+	nums2:= [5] int {1,2}
+	fmt.Println(nums2)
+
+	// 2-D Array
+	nums3:= [3][3] int {{1,2},{3,4}}
+	fmt.Println(nums3)
+
+	// Boolean Array
+	var trueOrFalse [5] bool
+	fmt.Println(trueOrFalse)
+
+	// String Array
+	var names [3] string
+	fmt.Println(names)
+}
+```
+
+## Output
+
+```
+[1 2 3 0 0]
+[1 2 0 0 0]
+[[1 2 0] [3 4 0] [0 0 0]]
+[false false false false false]
+[  ]
+```
+
+## Explanation
+
+- In the above code, we have created an array of size 5 and assigned values to the first 3 elements.
+- We have also created a 1-D array, 2-D array, boolean array, and string array.
+- The default value of an integer array is 0, boolean array is false, and string array is an empty string.
